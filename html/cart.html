@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vivo 购物车</title>
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="header-top">
+        <ul class="header-top-left">
+            <li><a href="http://127.0.0.1/vivostore/html/vivo.html">品牌</a></li>
+            <li><a href="http://127.0.0.1/vivostore/html/vivo.html">Funtouch OS</a></li>
+            <li><a href="http://127.0.0.1/vivostore/html/vivo.html">体验店</a></li>
+            <li><a href="http://127.0.0.1/vivostore/html/vivo.html">企业业务</a></li>
+            <li><a href="http://127.0.0.1/vivostore/html/vivo.html">社区</a></li>
+        </ul>
+        <div class="header-top-right">
+         <a href="http://127.0.0.1/vivostore/html/vivo.html" class="header-app">
+            <span>下载app</span>
+         </a>
+         <a href="#">购物车</a>
+         <div class="header-top-enter">
+             <a href="http://127.0.0.1/vivostore/html/login.html" class="enter-left">登录</a>
+            <i>|</i>
+            <a href="http://127.0.0.1/vivostore/html/sign.html" class="enter-right">注册</a>
+         </div>
+        </div>    
+</div>
+<div id="nav">
+<div class="nav-con">
+    <a href="http://127.0.0.1/vivostore/html/vivo.html">
+        <img src="../images/vivo.jpg" alt="" class="nav-vivo">
+    </a>
+    <div class="nav-ul">  
+        <ul >
+            <li><a href="#">NEX系列</a></li>
+            <li><a href="#">X系列</a></li>
+            <li><a href="#">S系列</a></li>
+            <li><a href="#">Y系列</a></li>
+            <li><a href="#">Z系列</a></li>
+            <li><a href="#">U系列</a></li>
+            <li><a href="#">iQOO手机</a></li>
+            <li><a href="#">智能硬件</a></li>
+            <li><a href="#">商城</a></li>
+            <li><a href="#">服务</a></li>
+            
+        </ul>
+    </div>
+
+    
+
+
+
+    <!-- 购物车列表 -->
+<table id="cartTable">
+    <thead>
+        <tr>
+          <th>
+            <label>
+              <input class="check-all check" type="checkbox" all-key='1' />&nbsp;全选</label>
+          </th>
+          <th>商品</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>小计</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+       
+      <tbody>
+            
+      </tbody>
+    
+    </table>
+    
+      <div class="foot" id="foot">
+        <label class="fl select-all">
+          <input type="checkbox" class="check-all check" all-key='0' />&nbsp;全选</label>
+        <a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+        <div class="fr closing">结 算</div>
+        <div class="fr total">合计：￥
+          <span id="priceTotal">0.00</span>
+        </div>
+        <div class="fr selected" id="selected">已选商品
+          <span id="selectedTotal">0</span>件
+          <span class="arrow up">︽</span>
+          <span class="arrow down">︾</span>
+        </div>
+        <div class="selected-view">
+          <div id="selectedViewList" class="clearfix">
+            <!--<div><img src="images/1.jpg"><span>取消选择</span></div>-->
+          </div>
+          <span class="arrow">◆
+            <span>◆</span>
+          </span>
+        </div>
+      </div>
+    
+    
+    
+    
+
+
+
+
+
+
+
+    <!-- feature -->
+<div id="feature">
+    <ul class="feature-list">
+        <li class="feature-item">
+            <span>官方正品</span>
+        </li>
+        <li class="feature-item">
+            <span>顺丰急速达</span>
+        </li>
+        <li class="feature-item">
+            <span>全国联保</span>
+        </li>
+        <li class="feature-item">
+            <span>镭雕定制</span>
+        </li>
+    </ul>
+ </div>
+ <!-----footer------>
+ <div id="footer">
+       <div class="footer-con">
+           <ul class="footer-ul">
+               <li>
+                   <dl class="footer-dl">
+                       <dt>热门链接</dt>
+                       <dd>x50 pro</dd>
+                       <dd>NEX 35</dd>
+                       <dd>Z6</dd>
+                       <dd>vivo摄影</dd>
+                       <dd>查找手机</dd>
+                       <dd>常见问题</dd>
+                   </dl>
+               </li>
+               <li>
+                  <dl class="footer-dl">
+                      <dt>在线购买</dt>
+                      <dd>选购手机</dd>
+                      <dd>选购配件</dd>
+                      <dd>企业服务</dd>
+                      <dd>依旧换新</dd>
+                      <dd>保障服务</dd>
+                      <dd>官方商城</dd>
+                  </dl>
+              </li>
+              <li>
+                  <dl class="footer-dl">
+                      <dt>服务支持</dt>
+                      <dd>服务首页</dd>
+                      <dd>服务网点查询</dd>
+                      <dd>真伪查询</dd>
+                      <dd>预约维修</dd>
+                      <dd>维修配件价格</dd>
+                      <dd>服务政策</dd>
+                      <dd>安全公告</dd>
+                  </dl>
+              </li>
+              <li>
+                  <dl class="footer-dl">
+                      <dt>vivo社区</dt>
+                      <dd>社区首页</dd>
+                      <dd>摄影专区</dd>
+                      <dd>微博</dd>
+                      <dd>贴吧</dd>
+                      <dd>兴趣部落</dd>
+                  </dl>
+              </li>
+              <li>
+                  <dl class="footer-dl">
+                      <dt>关于vivo</dt>
+                      <dd>vivo简介</dd>
+                      <dd>工作机会</dd>
+                      <dd>新闻资讯</dd>
+                      <dd>采购平台</dd>
+                      <dd>供应商平台</dd>
+                      <dd>开放平台</dd>
+                      <dd>廉正合规</dd>
+                  </dl>
+              </li>
+              <li>
+                  <img src="../images/1598189039(1).jpg" alt="" style="height: 168px;width: 120px;">
+              </li>
+           </ul>
+               </div>
+           </div>
+       </div>
+
+<script src="../js/lib.js"></script>
+<script src="../js/ajax.js"></script>
+<script src="../js/cart.js"></script>
+</body>
+</html>
