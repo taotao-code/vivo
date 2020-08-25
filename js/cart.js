@@ -100,45 +100,28 @@ class Cart {
   
         })
       } else {
-        // 从浏览器取出购物车数据
         let cartGoods = JSON.parse(localStorage.getItem('carts'));
-        //console.log(cartGoods);
-        // 删除指定的属性
         delete cartGoods[gId];
-        // console.log(cartGoods);
         localStorage.setItem('carts', JSON.stringify(cartGoods));
-  
       }
-      // 把当前商品对应的tr删除
       eleObj.parentNode.parentNode.remove();
-  
       Cart.cpCount();
-  
     }
-  
-  
     /******价格和数量计算********/
     static cpCount () {
-      // 1 获取页面中所有的check-one
       let checkOne = all('.check-one');
-      // 保存选中上品的价格和数量
       let count = 0;
       let xj = 0;
-      // 2 遍历找出选中的
       checkOne.forEach(ele => {
         if (ele.checked) {
           // console.log(ele);
-          // 3 找到当前input对应的tr
           let trObj = ele.parentNode.parentNode;
-          // 4 获取数量和小计
           let tmpCount = trObj.getElementsByClassName('count-input')[0].value;
           let tmpXj = trObj.getElementsByClassName('subtotal')[0].innerHTML;
-          //console.log(count, xj);
           count = tmpCount - 0 + count;
           xj = tmpXj - 0 + xj;
         }
       })
-      //console.log(count, xj);
       // 5 放到页面中
       $('#selectedTotal').innerHTML = count;
       $('#priceTotal').innerHTML = parseInt(xj * 100) / 100;
@@ -147,13 +130,10 @@ class Cart {
   
     /******数量增加*****/
     static addGoodsNum (eleObj, gId) {
-      //1 修改input的数量
       // console.log(eleObj);
       let inputNumObj = eleObj.previousElementSibling;
       //console.log(inputNumObj);
       inputNumObj.value = inputNumObj.value - 0 + 1;
-  
-      // 2 判断登录状态,修改数据库或浏览器的数量
       if (localStorage.getItem('user')) {
         Cart.updateCart(gId, inputNumObj.value);
       } else {
@@ -164,8 +144,6 @@ class Cart {
       //  3-1 获取价格的节点
       let priceObj = eleObj.parentNode.previousElementSibling;
       eleObj.parentNode.nextElementSibling.innerHTML = (priceObj.innerHTML * inputNumObj.value).toFixed(2);
-  
-      // 计算价格和数量
       Cart.cpCount();
     }
     /********cart中数量修改******** */
@@ -187,76 +165,55 @@ class Cart {
     /*****全选的实现*******/
     checkAll () {
       // console.log(this);
-      // 1 实现另一个全选按钮选中或者取消
       let state = this.checked;
       // console.log(state);
       all('.check-all')[this.getAttribute('all-key')].checked = state;
-      // 2 让所有的商品选中
-      // 2-1 获取单个商品的复选框
       let checkGoods = all('.check-one');
-  
-      // 2-2 遍历所有商品的单选框设置状态
       checkGoods.forEach(ele => {
         //console.log(ele);
         ele.checked = state;
   
       })
-      // 计算价格和数量
       Cart.cpCount();
     }
   
     /*******单选的实现*****/
     static goodsCheck (eleObj) {
       //  console.log(eleObj);
-  
       let state = eleObj.checked;
       //console.log(state);
-      //1 当一件商品取消选中,全选取消
       if (!state) {
         all('.check-all')[0].checked = false;
         all('.check-all')[1].checked = false;
       } else {
-        //2 所有单选选中,全选选上
-        //2-1 获取所有的单选框
         let checkOne = all('.check-one');
         let len = checkOne.length;
-  
-        // 2-2 计算选中的单选框
         let checkCount = 0;
         checkOne.forEach(ele => {
-          // 前面为true,后面执行++
           ele.checked && checkCount++
         })
-        // 2-3 单个商品选中的个数,等于len,则全选选中
         if (len == checkCount) {
           all('.check-all')[0].checked = true;
           all('.check-all')[1].checked = true;
         }
-  
       }
-  
       // 计算价格和数量
       Cart.cpCount();
     }
-
     /******数量的减少********/
 static decGoodsNum(eleobj,gId){
-  //修改input的数量
-  // console.log(eleobj);
   let inputNumObj=eleobj.nextElementSibling;
   // console.log(inputNumObj)
-  inputNumObj.value=inputNumObj.value-0-1;
+  if(inputNumObj.value>1){
+    inputNumObj.value=inputNumObj.value-0-1;
+  }
   if(localStorage.getItem("user")){
       Cart.updateCart(gId, inputNumObj.value);
   }else {
       Cart.updateLocal(gId, inputNumObj.value)
     }
-     // 3 实现小计的计算
-  //  3-1 获取价格的节点
   let priceObj = eleobj.parentNode.previousElementSibling;
   eleobj.parentNode.nextElementSibling.innerHTML = (priceObj.innerHTML * inputNumObj.value).toFixed(2);
-
-  // 计算价格和数量
   Cart.cpCount();
 }
   }

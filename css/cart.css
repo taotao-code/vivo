@@ -243,10 +243,6 @@ svg {
   font-size: 22px;
   transition: color .4s ease-in-out; }
 
-* {
-  margin: 0;
-  padding: 0; }
-
 a {
   color: #666;
   text-decoration: none; }

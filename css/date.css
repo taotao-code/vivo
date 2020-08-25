@@ -353,48 +353,6 @@ svg {
   display: inline-block;
   line-height: 24px; }
 
-#detail_main .con_right .business-staff-container .add-count-wrap .reduce {
-  display: inline-block;
-  width: 20px;
-  height: 24px;
-  line-height: 24px;
-  border-right: 1px solid #DADADA;
-  text-align: center;
-  cursor: pointer; }
-
-#detail_main .con_right .business-staff-container .add-count-wrap .reduce .buy-count-plus {
-  display: inline-block;
-  width: 14px;
-  height: 2px;
-  background-image: url(../img/small-icons.png);
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  background-position: -71px -48px; }
-
-#detail_main .con_right .business-staff-container .add-count-wrap .txt {
-  width: 50px;
-  border: none;
-  text-align: center;
-  vertical-align: middle; }
-
-#detail_main .con_right .business-staff-container .add-count-wrap .add {
-  display: inline-block;
-  width: 20px;
-  height: 24px;
-  line-height: 24px;
-  border-left: 1px solid #DADADA;
-  text-align: center;
-  cursor: pointer; }
-
-#detail_main .con_right .business-staff-container .add-count-wrap .add .buy-count-minus {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-image: url(../img/small-icons.png);
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  background-position: -90px -44px; }
-
 #detail_main .con_right .business-staff-container {
   margin: 15px 0 0px 20px;
   color: #434242; }
