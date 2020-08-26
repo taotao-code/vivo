@@ -1,5 +1,4 @@
 ; (function () {
-
     $("#detail_playPicture_list").children("ul").find("li").mouseenter(function () {
         $(this).addClass("checked").siblings().removeClass("checked")
         let i = $(this).index() + 1;
@@ -58,8 +57,6 @@
             this.span.style.top = t + "px";
             var x = l / (this.sBox.offsetWidth - this.span.offsetWidth);
             var y = t / (this.sBox.offsetHeight - this.span.offsetHeight);
-            // console.log(x, y)
-            // 根据比例计算位置
             this.lImg.style.left = (this.lBox.offsetWidth - this.lImg.offsetWidth) * x + "px";
             this.lImg.style.top = (this.lBox.offsetHeight - this.lImg.offsetHeight) * y + "px";
         }

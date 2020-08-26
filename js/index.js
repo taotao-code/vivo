@@ -1,15 +1,15 @@
 //下拉列表
-
-$(".nav-ul").onmouseenter=function(){
-  $(".nex-con").style.display="block";
+var navul=document.querySelector(".nav-ul");
+var nexcon=document.querySelector(".nex-con");
+navul.onmouseenter=function(){
+  nexcon.style.display="block";
 }
-$(".nav-ul").onmouseleave=function(){
-  $(".nex-con").style.display="none";
+navul.onmouseleave=function(){
+  nexcon.style.display="none";
 }
 
 
 //  轮播图
- //获取节点
  var div=document.querySelector("#banner-con"),
  imgs=document.querySelectorAll(".banner-ul li"),
  btns=document.querySelectorAll("ol li"),
@@ -44,10 +44,6 @@ $(".nav-ul").onmouseleave=function(){
   }
   bo();
 
-  //侧边导航
-
-
-
 
 
   //倒计时
@@ -60,18 +56,17 @@ $(".nav-ul").onmouseleave=function(){
   var s=59;
   function fn(){
     var time = setInterval(function () {
-        s--; // 秒数自减
-        if (s < 0) {  // 秒数小于0
-          m -= 1;  // 分钟减-1
+        s--; 
+        if (s < 0) { 
+          m -= 1; 
           s = 59
         }
         if(m<0){
           h-=1;
           m=59
         }
-        if (s == 0 && m == 0&& h==0 ) {  // 当秒数和分钟为0,就清除定时器
+        if (s == 0 && m == 0&& h==0 ) {  
           clearInterval(time);
-          // 初始化倒计时
           h=11
           m = 59;
           s = 59;
@@ -84,6 +79,23 @@ $(".nav-ul").onmouseleave=function(){
   }
   
   fn();
+
+  $(function(){
+    $(window).scroll(function(){
+      let top =$(window).scrollTop();
+      if(top>800){
+        $(".gotop").fadeIn(1000)
+      }else{
+        $(".gotop").fadeOut(1000)
+      }
+    });
+    $(".gotop").click(function(){
+      $("html,body").animate({
+        scrollTop:0
+      },1000);
+    });
+  })
+
 
 
  

@@ -3,7 +3,7 @@
 class Goods {
     // 构造方法
     constructor() {
-      this.list();
+      Goods.list();
       this.lay();
       // 给登录按钮绑定事件
     }
@@ -17,11 +17,11 @@ class Goods {
     
     
     /******实现商品列表***** */
-    list () {
+   static list (tmp=1) {
       //1 发送ajax获取数据
-      ajax.get('../php/goods.php', { fn: 'lst' }).then(res => {
-        // console.log(res);
-        let { stateCode, data } = JSON.parse(res);
+      ajax.get('../php/goods.php', { fn: 'lst', page:tmp}).then(res => {
+        let { stateCode, data ,count} = JSON.parse(res);
+       
         //2 判断状态,拿到data
         if (stateCode == 200) {
           // 3 循环数据,拼接追加
@@ -40,6 +40,15 @@ class Goods {
           });
           // 4 获取divs,将数据追加
           $('.divs').innerHTML = str;
+
+          //渲染页码
+          let pagstr=""; 
+          for(let i=1;i<=count;i++){
+            // console.log(i);
+             pagstr+=`<li><a href="#" onclick="Goods.list(${i})">${i}</a></li>`;
+          };
+          // console.log(pagstr);
+          document.querySelector(".pagination").innerHTML=pagstr;
         }
   
       })
@@ -78,27 +87,21 @@ class Goods {
         //2-2 判断当前商品是否存在,存在则增加数量
   
         for (let gId in carts) {
-          if (gId == goodsId) {  // 判断当前添加的商品和正在循环的商品是否一致
+          if (gId == goodsId) {  
             goodsNum = carts[gId] - 0 + goodsNum;
           }
         }
-        // 2-3 不存在就新增,存在就重新给数量
         carts[goodsId] = goodsNum;
   
-        // 2-4 存到local
         localStorage.setItem('carts', JSON.stringify(carts))
       } else {
-        // 3 没有数据就新增,保存商品id和数量
         let goodsCart = { [goodsId]: goodsNum };
-        // 3-1 转化为json进行存储
         goodsCart = JSON.stringify(goodsCart);
-        localStorage.setItem('carts', goodsCart)
-  
+        localStorage.setItem('carts', goodsCart);
       }
   
     }
   
-    /******用户登录后,将浏览器数据添加到数据库*********/
   
   }
   

@@ -10,68 +10,39 @@ class Cart {
   
     /*******购物车列表******/
     list () {
-      // 1 根据登录状态获取商品id
       let userId = localStorage.getItem('user');
-    // console.log(userId)  
-      // 声明保存购物车商品id的变量
       let cartGoodsId = '';
       if (userId) {
-        //2 存在则去cart表中获取id
         ajax.get('../php/cart.php', { fn: 'getGoodsId', userId:userId }).then(res => {
-          // console.log(res);
           let { data, stateCode } = JSON.parse(res);
           if (stateCode == 200) {
-            //console.log(data);
-            // 购物车数据为空则停止
             if (!data) return;
-  
-            // 将商品id和数量保存为对象
             let cartIdNum = {};
             data.forEach(ele => {
               cartGoodsId += ele.productId + ','
               cartIdNum[ele.productId] = ele.num;
             })
-            // 根据id获取商品信息
-            // console.log(cartIdNum);
             Cart.getCartGoods(cartGoodsId, cartIdNum);
-           
           }
-         
-  
         })
       } else {
-        // 3 未登录去浏览器获取数据
         let cartGoods = localStorage.getItem('carts');
-        // 3-1 为空则停止
         if (!cartGoods) return;
         cartGoods = JSON.parse(cartGoods);
-        // console.log(cartGoods);
-  
-        // 3-2 循环遍历,获取商品id
         for (let gId in cartGoods) {
-          //console.log(gId);
-  
           cartGoodsId += gId + ','
         }
-        //console.log(cartGoodsId);
         Cart.getCartGoods(cartGoodsId);
       }
     }
     /******根据购物车商品id,去商品表获取商品信息*****/
     static getCartGoods (gId, cartIds = '') {
-      // 如果是登录状态,商品数量从cartIds,为登录从浏览器来
       cartIds = cartIds || JSON.parse(localStorage.getItem('carts'));
-      // console.log(cartIds);
-  
       ajax.post('../php/cart.php?fn=lst', { goodsId: gId }).then(res => {
-        // console.log(res);
-        // 1 转化数据,获取data
         let { data, stateCode } = JSON.parse(res);
         if (stateCode == 200) {
           let str = '';
           data.forEach(ele => {
-            // console.log(ele);
-            // 将数据循环到页面中
             str += `<tr>
             <td class="checkbox"><input class="check-one check" type="checkbox"/ onclick="Cart.goodsCheck(this)"></td>
             <td class="goods"><a href="http://127.0.0.1/vivostore/html/deta.html">
@@ -139,9 +110,6 @@ class Cart {
       } else {
         Cart.updateLocal(gId, inputNumObj.value)
       }
-  
-      // 3 实现小计的计算
-      //  3-1 获取价格的节点
       let priceObj = eleObj.parentNode.previousElementSibling;
       eleObj.parentNode.nextElementSibling.innerHTML = (priceObj.innerHTML * inputNumObj.value).toFixed(2);
       Cart.cpCount();
@@ -149,34 +117,27 @@ class Cart {
     /********cart中数量修改******** */
     static updateCart (gId, gNum) {
       let id = localStorage.getItem('user');
-      // console.log(id)
       ajax.get('../php/cart.php', { fn: 'update', goodsId: gId, goodsNum: gNum, userId: id }).then(res => {
         console.log(res);
       })
     }
     /******浏览器中数量修改*****/
     static updateLocal (gId, gNum) {
-      // 取出并转化
       let cartGoods = JSON.parse(localStorage.getItem('carts'));
-      // 重新赋值
       cartGoods[gId] = gNum;
       localStorage.setItem('carts', JSON.stringify(cartGoods))
     }
     /*****全选的实现*******/
     checkAll () {
-      // console.log(this);
       let state = this.checked;
-      // console.log(state);
       all('.check-all')[this.getAttribute('all-key')].checked = state;
       let checkGoods = all('.check-one');
       checkGoods.forEach(ele => {
-        //console.log(ele);
         ele.checked = state;
   
       })
       Cart.cpCount();
     }
-  
     /*******单选的实现*****/
     static goodsCheck (eleObj) {
       //  console.log(eleObj);
@@ -217,7 +178,6 @@ static decGoodsNum(eleobj,gId){
   Cart.cpCount();
 }
   }
-  
   new Cart;
   
   
